@@ -6,8 +6,8 @@ import { Block, Text, theme } from "galio-framework";
 
 import ComponentsScreen from '../screens/Components';
 import HomeScreen from '../screens/Home';
-// import LoginScreen from '../screens/Login';
-import LoginScreen from '../playground/Login';
+import SigninScreen from '../screens/Signin';
+import SignupScreen from '../screens/Signup';
 import ProfileScreen from '../screens/Profile';
 import SettingsScreen from '../screens/Settings';
 
@@ -75,6 +75,24 @@ const ComponentsStack = createStackNavigator({
   transitionConfig,
 })
 
+const AuthenticationStack = createStackNavigator({
+  Signin: {
+    screen: SigninScreen,
+    navigationOptions: ({ navigation }) => ({
+      headerTransparent: true,
+    })
+  },
+  Signup: {
+    screen: SignupScreen,
+    navigationOptions: ({ navigation }) => ({
+      headerTransparent: true,
+    })
+  },
+}, {
+  cardStyle: { backgroundColor: '#EEEEEE', },
+  transitionConfig,
+})
+
 const HomeStack = createStackNavigator({
   Home: {
     screen: HomeScreen,
@@ -111,8 +129,11 @@ const HomeStack = createStackNavigator({
 
 const AppStack = createDrawerNavigator(
   {
-    Login: {
-      screen: LoginScreen,
+    Authentication: {
+      screen: AuthenticationStack,
+      navigationOptions: {
+        drawerLabel: () => {},
+      },
     },
     Dashboard: {
       screen: HomeStack,
@@ -182,6 +203,7 @@ const AppStack = createDrawerNavigator(
 
 export default createSwitchNavigator(
   {
+    // Authentication: AuthenticationStack,
     App: AppStack,
     Home: HomeStack,
   },

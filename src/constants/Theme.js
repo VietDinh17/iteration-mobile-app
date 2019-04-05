@@ -27,6 +27,7 @@ export default {
     FACEBOOK: '#3B5998',
     TWITTER: '#5BC0DE',
     DRIBBBLE: '#EA4C89',
+    GITHUB: '#24292E',
     ICON: '#4A4A4A',
     NAVBAR: '#F9F9F9',
     TRANSPARENT: 'transparent',
