@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="#"><img src="https://github.com/VietDinh17/iteration-mobile-app/tree/master/assets/readme_images/logo.jpg" alt="simpleShop" width="200"></a>
+  <a href="#"><img src="https://github.com/VietDinh17/iteration-mobile-app/blob/master/assets/readme_images/logo.jpg" alt="iteration" width="200"></a>
   <br>
     Iteration  
   <br>
@@ -15,7 +15,7 @@
   <a href="#license">License</a>
 </p>
 
-![alt text](https://github.com/VietDinh17/simpleShop/blob/master/client/public/Pics/main-page.PNG)
+![alt text]()
 
 
 ## Key Features
