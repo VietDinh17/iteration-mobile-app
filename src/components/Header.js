@@ -54,48 +54,26 @@ class Header extends React.Component {
     const { white, title, navigation } = this.props;
     const { routeName } = navigation.state;
 
-    if (title === 'Title') {
-      return [
-        <ChatButton key='chat-title' navigation={navigation} isWhite={white} />,
-        <BasketButton key='basket-title' navigation={navigation} isWhite={white} />
-      ]
-    }
-
     switch (routeName) {
       case 'Home':
         return ([
           <ChatButton key='chat-home' navigation={navigation} isWhite={white} />,
           <BasketButton key='basket-home' navigation={navigation} isWhite={white} />
         ]);
-      case 'Deals':
+      case 'Expenses':
         return ([
           <ChatButton key='chat-categories' navigation={navigation} />,
           <BasketButton key='basket-categories' navigation={navigation} />
         ]);
-      case 'Categories':
+      case 'Reports':
         return ([
           <ChatButton key='chat-categories' navigation={navigation} isWhite={white} />,
           <BasketButton key='basket-categories' navigation={navigation} isWhite={white} />
         ]);
-      case 'Category':
+      case 'Trips':
         return ([
           <ChatButton key='chat-deals' navigation={navigation} isWhite={white} />,
           <BasketButton key='basket-deals' navigation={navigation} isWhite={white} />
-        ]);
-      case 'Profile':
-        return ([
-          <ChatButton key='chat-profile' navigation={navigation} isWhite={white} />,
-          <BasketButton key='basket-deals' navigation={navigation} isWhite={white} />
-        ]);
-      case 'Product':
-        return ([
-          <SearchButton key='search-product' navigation={navigation} isWhite={white} />,
-          <BasketButton key='basket-product' navigation={navigation} isWhite={white} />
-        ]);
-      case 'Search':
-        return ([
-          <ChatButton key='chat-search' navigation={navigation} isWhite={white} />,
-          <BasketButton key='basket-search' navigation={navigation} isWhite={white} />
         ]);
       case 'Settings':
         return ([
@@ -107,19 +85,19 @@ class Header extends React.Component {
     }
   }
 
-  renderSearch = () => {
-    const { navigation } = this.props;
-    return (
-      <Input
-        right
-        color="black"
-        style={styles.search}
-        placeholder="What are you looking for?"
-        onFocus={() => navigation.navigate('Pro')}
-        iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="zoom-split" family="Galio" />}
-      />
-    )
-  }
+  // renderSearch = () => {
+  //   const { navigation } = this.props;
+  //   return (
+  //     <Input
+  //       right
+  //       color="black"
+  //       style={styles.search}
+  //       placeholder="What are you looking for?"
+  //       onFocus={() => navigation.navigate('Pro')}
+  //       iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="zoom-split" family="Galio" />}
+  //     />
+  //   )
+  // }
 
   renderTabs = () => {
     const { navigation, tabTitleLeft, tabTitleRight } = this.props;
@@ -129,13 +107,13 @@ class Header extends React.Component {
         <Button shadowless style={[styles.tab, styles.divider]} onPress={() => navigation.navigate('Pro')}>
           <Block row middle>
             <Icon name="grid-square" family="Galio" style={{ paddingRight: 8 }} />
-            <Text size={16} style={styles.tabTitle}>{tabTitleLeft || 'Categories'}</Text>
+            <Text size={16} style={styles.tabTitle}>{tabTitleLeft || 'Refresh'}</Text>
           </Block>
         </Button>
         <Button shadowless style={styles.tab} onPress={() => navigation.navigate('Pro')}>
           <Block row middle>
             <Icon size={16} name="camera-18" family="GalioExtra" style={{ paddingRight: 8 }} />
-            <Text size={16} style={styles.tabTitle}>{tabTitleRight || 'Best Deals'}</Text>
+            <Text size={16} style={styles.tabTitle}>{tabTitleRight || 'Upload Picture'}</Text>
           </Block>
         </Button>
       </Block>
@@ -147,7 +125,7 @@ class Header extends React.Component {
     if (search || tabs) {
       return (
         <Block center>
-          {search ? this.renderSearch() : null}
+          {/* {search ? this.renderSearch() : null} */}
           {tabs ? this.renderTabs() : null}
         </Block>
       )
@@ -158,7 +136,7 @@ class Header extends React.Component {
   render() {
     const { back, title, white, transparent, navigation } = this.props;
     const { routeName } = navigation.state;
-    const noShadow = ["Search", "Categories", "Deals", "Pro", "Profile"].includes(routeName);
+    const noShadow = ["Profile"].includes(routeName);
     const headerStyles = [
       !noShadow ? styles.shadow : null,
       transparent ? { backgroundColor: 'rgba(0,0,0,0)' } : null,
@@ -171,7 +149,8 @@ class Header extends React.Component {
           title={title}
           style={styles.navbar}
           transparent={transparent}
-          right={this.renderRight()}
+          // right={this.renderRight()}
+          right={null}
           rightStyle={{ alignItems: 'center' }}
           leftStyle={{ paddingVertical: 12, flex: 0.3 }}
           leftIconColor={white ? theme.COLORS.WHITE : theme.COLORS.ICON}

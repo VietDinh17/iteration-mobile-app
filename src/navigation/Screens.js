@@ -4,13 +4,13 @@ import { createSwitchNavigator, createStackNavigator, createDrawerNavigator } fr
 
 import { Block, Text, theme } from "galio-framework";
 
-import ComponentsScreen from '../screens/Components';
+import Expenses from '../screens/Expenses';
 import HomeScreen from '../screens/Home';
 import SigninScreen from '../screens/Signin';
 import SignupScreen from '../screens/Signup';
-import ProfileScreen from '../screens/Profile';
+import TripScreen from '../screens/Trip';
 import SettingsScreen from '../screens/Settings';
-
+import ReportsScreen from '../screens/Reports';
 import Menu from './Menu';
 import Header from '../components/Header';
 import { Drawer } from '../components/';
@@ -40,7 +40,7 @@ const transitionConfig = (transitionProps, prevTransitionProps) => ({
     })
 
     const scaleWithOpacity = { opacity }
-    const screenName = "Search"
+    const screenName = "N/A"
 
     if (screenName === transitionProps.scene.route.routeName ||
       (prevTransitionProps && screenName === prevTransitionProps.scene.route.routeName)) {
@@ -50,30 +50,30 @@ const transitionConfig = (transitionProps, prevTransitionProps) => ({
   }
 })
 
-const ProfileStack = createStackNavigator({
-  Profile: {
-    screen: ProfileScreen,
-    navigationOptions: ({ navigation }) => ({
-      header: <Header white transparent title="Profile" navigation={navigation} />,
-      headerTransparent: true,
-    })
-  },
-}, {
-  cardStyle: { backgroundColor: '#EEEEEE', },
-  transitionConfig,
-})
+// const ProfileStack = createStackNavigator({
+//   Profile: {
+//     screen: ProfileScreen,
+//     navigationOptions: ({ navigation }) => ({
+//       header: <Header white transparent title="Profile" navigation={navigation} />,
+//       headerTransparent: true,
+//     })
+//   },
+// }, {
+//   cardStyle: { backgroundColor: '#EEEEEE', },
+//   transitionConfig,
+// })
 
-const ComponentsStack = createStackNavigator({
-  Components: {
-    screen: ComponentsScreen,
-    navigationOptions: ({ navigation }) => ({
-      header: <Header back title="Components" navigation={navigation} />,
-    })
-  },
-}, {
-  cardStyle: { backgroundColor: '#EEEEEE', },
-  transitionConfig,
-})
+// const ComponentsStack = createStackNavigator({
+//   Components: {
+//     screen: ComponentsScreen,
+//     navigationOptions: ({ navigation }) => ({
+//       header: <Header back title="Components" navigation={navigation} />,
+//     })
+//   },
+// }, {
+//   cardStyle: { backgroundColor: '#EEEEEE', },
+//   transitionConfig,
+// })
 
 const AuthenticationStack = createStackNavigator({
   Signin: {
@@ -97,7 +97,7 @@ const HomeStack = createStackNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: ({navigation}) => ({
-      header: <Header search tabs title="Home" navigation={navigation} />,
+      header: <Header tabs title="Home" navigation={navigation} />,
     })
   },
   Settings: {
@@ -106,19 +106,19 @@ const HomeStack = createStackNavigator({
       header: <Header back title="Settings" navigation={navigation} />,
     })
   },
-  Components: {
-    screen: ComponentsScreen,
-    navigationOptions: ({navigation}) => ({
-      header: <Header title="Components" navigation={navigation} />,
-    })
-  },
-  Profile: {
-    screen: ProfileScreen,
-    navigationOptions: ({navigation}) => ({
-      header: <Header white transparent title="Profile" navigation={navigation} />,
-      headerTransparent: true,
-    })
-  },
+  // Components: {
+  //   screen: ComponentsScreen,
+  //   navigationOptions: ({navigation}) => ({
+  //     header: <Header title="Components" navigation={navigation} />,
+  //   })
+  // },
+  // Profile: {
+  //   screen: ProfileScreen,
+  //   navigationOptions: ({navigation}) => ({
+  //     header: <Header white transparent title="Profile" navigation={navigation} />,
+  //     headerTransparent: true,
+  //   })
+  // },
 },
 {
   cardStyle: { 
@@ -143,19 +143,27 @@ const AppStack = createDrawerNavigator(
         ),
       }),
     },
-    NewCollection: {
+    Expenses: {
       screen: HomeScreen,
       navigationOptions: (navOpt) => ({
         drawerLabel: ({focused}) => (
-          <Drawer focused={focused} screen="Pro" title="New Collection" />
+          <Drawer focused={focused} screen="Expenses" title="Expenses" />
         ),
       }),
     },
-    Profile: {
-      screen: ProfileStack,
+    Reports: {
+      screen: ReportsScreen,
       navigationOptions: (navOpt) => ({
         drawerLabel: ({focused}) => (
-          <Drawer focused={focused} screen="Profile" title="Profile" />
+          <Drawer focused={focused} screen="Reports" title="Reports" />
+        ),
+      }),
+    },
+    Trip: {
+      screen: TripScreen,
+      navigationOptions: (navOpt) => ({
+        drawerLabel: ({focused}) => (
+          <Drawer focused={focused} screen="Trip" title="Trip" />
         ),
       }),
     },
@@ -167,33 +175,17 @@ const AppStack = createDrawerNavigator(
         ),
       }),
     },
-    Components: {
-      screen: ComponentsStack,
-      navigationOptions: (navOpt) => ({
-        drawerLabel: ({focused}) => (
-          <Drawer focused={focused} screen="Components" title="Components" />
-        ),
-      }),
-    },
     MenuDivider: {
       screen: HomeStack,
       navigationOptions: {
-        drawerLabel: () => <Block style={{marginVertical: 8}}><Text>{` `}</Text></Block>,
+        drawerLabel: () => <Block style={{marginVertical: 64}}><Text>{` `}</Text></Block>,
       },
     },
-    SignIn: {
-      screen: HomeScreen,
+    SignOut: {
+      screen: AuthenticationStack,
       navigationOptions: (navOpt) => ({
         drawerLabel: ({focused}) => (
-          <Drawer focused={focused} screen="Pro" title="Sign In" />
-        ),
-      }),
-    },
-    SignUp: {
-      screen: HomeScreen,
-      navigationOptions: (navOpt) => ({
-        drawerLabel: ({focused}) => (
-          <Drawer focused={focused} screen="Pro" title="Sign Up" />
+          <Drawer focused={focused} screen="Authentication" title="Sign Out" />
         ),
       }),
     },

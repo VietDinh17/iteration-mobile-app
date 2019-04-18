@@ -5,7 +5,7 @@ import { Block, Text, theme } from "galio-framework";
 import Icon from './Icon';
 import materialTheme from '../constants/Theme';
 
-const proScreens = ['Woman', 'Man', 'Kids', 'New Collection', 'Sign In', 'Sign Up'];
+const notificationLabels = ['Test'];
 
 class DrawerItem extends React.Component {
   renderIcon = () => {
@@ -20,20 +20,28 @@ class DrawerItem extends React.Component {
             family="GalioExtra"
             color={focused ? 'white' : materialTheme.COLORS.MUTED} />
         );
-      case 'New Collection':
+      case 'Expenses' || 'Reports':
         return (
           <Icon
             size={16}
-            name="selection"
+            name="list-bullet"
             family="Galio"
             color={focused ? 'white' : materialTheme.COLORS.MUTED} />
         );
-      case 'Profile':
+      // case 'Reports':
+      //   return (
+      //     <Icon
+      //       size={16}
+      //       name="list-bullet"
+      //       family="GalioExtra"
+      //       color={focused ? 'white' : materialTheme.COLORS.MUTED} />
+      //   );
+      case 'Trip':
         return (
           <Icon
             size={16}
-            name="circle-10"
-            family="GalioExtra"
+            name="drag-31"
+            family="Galio"
             color={focused ? 'white' : materialTheme.COLORS.MUTED} />
         );
       case 'Settings':
@@ -44,27 +52,11 @@ class DrawerItem extends React.Component {
             family="Galio"
             color={focused ? 'white' : materialTheme.COLORS.MUTED} />
         );
-      case 'Components':
+      case 'Sign Out':
         return (
           <Icon
             size={16}
-            name="ui-04"
-            family="Galio"
-            color={focused ? 'white' : materialTheme.COLORS.MUTED} />
-        );
-      case 'Sign In':
-        return (
-          <Icon
-            size={16}
-            name="log-in"
-            family="Galio"
-            color={focused ? 'white' : materialTheme.COLORS.MUTED} />
-        );
-      case 'Sign Up':
-        return (
-          <Icon
-            size={16}
-            name="add-27"
+            name="log-out"
             family="Galio"
             color={focused ? 'white' : materialTheme.COLORS.MUTED} />
         );
@@ -76,10 +68,10 @@ class DrawerItem extends React.Component {
   renderLabel = () => {
     const { title } = this.props;
 
-    if (proScreens.includes(title)) {
+    if (notificationLabels.includes(title)) {
       return (
         <Block middle style={styles.pro}>
-          <Text size={12} color="white">PRO</Text>
+          <Text size={12} color="white">Number Here</Text>
         </Block>
       )
     }
@@ -89,7 +81,7 @@ class DrawerItem extends React.Component {
 
   render() {
     const { focused, title } = this.props;
-    const proScreen = proScreens.includes(title);
+    const proScreen = notificationLabels.includes(title);
     return (
       <Block flex row style={[styles.defaultStyle, focused ? [styles.activeStyle, styles.shadow] : null]}>
         <Block middle flex={0.1} style={{ marginRight: 28 }}>
