@@ -6,6 +6,11 @@ import { Block, GalioProvider } from 'galio-framework';
 import Screens from './src/navigation/Screens';
 import { Images, products, materialTheme } from './src/constants/';
 
+// Amplify imports and config
+import Amplify from '@aws-amplify/core'
+import config from './src/constants/aws-exports'
+Amplify.configure(config)
+
 // cache app images
 const assetImages = [
   Images.Pro,

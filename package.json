@@ -13,6 +13,8 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "aws-amplify": "^1.1.26",
+    "aws-amplify-react-native": "^2.1.10",
     "expo": "^32.0.0",
     "galio-framework": "^0.4.4",
     "react": "16.5.0",

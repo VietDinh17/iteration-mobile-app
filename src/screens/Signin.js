@@ -9,12 +9,33 @@ import {
 } from 'galio-framework';
 import theme from '../constants/Theme';
 
+// AWS Amplify
+import Auth from '@aws-amplify/auth'
+
 const { height, width } = Dimensions.get('window');
 
 class Signin extends React.Component {
   state = {
-    email: '-',
-    password: '-',
+    username: '',
+    password: '',
+  }
+
+  async signIn() {
+    const { username, password } = this.state
+    await Auth.signIn(username, password)
+      .then(user => {
+        this.setState({ user })
+        this.props.navigation.navigate('Home')
+      })
+      .catch(err => {
+        if (!err.message) {
+          console.log('Error when signing in: ', err)
+          Alert.alert('Error when signing in: ', err)
+        } else {
+          console.log('Error when signing in: ', err.message)
+          Alert.alert('Error when signing in: ', err.message)
+        }
+      })
   }
 
   handleChange = (name, value) => {
@@ -23,7 +44,6 @@ class Signin extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    const { email, password } = this.state;
 
     return (
       <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
@@ -58,11 +78,11 @@ class Signin extends React.Component {
             <Block flex={2}>
               <Input
                 rounded
-                type="email-address"
-                placeholder="Email"
+                // type="email-address"
+                placeholder="Username"
                 autoCapitalize="none"
                 style={{ width: width * 0.9 }}
-                onChangeText={text => this.handleChange('email', text)}
+                onChangeText={text => this.handleChange('username', text)}
               />
               <Input
                 rounded
@@ -85,7 +105,7 @@ class Signin extends React.Component {
               <Button
                 round
                 color="error"
-                onPress={() => navigation.navigate('Home')}
+                onPress={() => this.signIn()}
               >
                 Sign in
               </Button>

@@ -7,6 +7,9 @@ import { Icon, Product } from '../components/';
 const { width } = Dimensions.get('screen');
 import products from '../constants/products';
 
+// AWS Amplify
+import Auth from '@aws-amplify/auth'
+
 export default class Home extends React.Component {
   // renderSearch = () => {
   //   const { navigation } = this.props;
@@ -23,7 +26,26 @@ export default class Home extends React.Component {
   //     />
   //   )
   // }
-  
+  constructor(props) {
+    super(props);
+    this.state = {
+      userToken: '',
+    }
+  }
+
+  componentDidMount = async () => {
+    await this.loadApp();
+  }
+
+  loadApp = async () => {
+    await Auth.currentAuthenticatedUser()
+      .then(user => {
+        this.setState({ userToken: user.signInUserSession.accessToken.jwtToken })
+      })
+      .catch(err => console.log(err))
+    this.props.navigation.navigate(this.state.userToken ? 'App' : 'Auth')
+  }
+
   renderTabs = () => {
     const { navigation } = this.props;
 
@@ -63,7 +85,7 @@ export default class Home extends React.Component {
   //   )
   // }
 
-  
+
   renderProducts = () => {
     return (
       <ScrollView
@@ -87,7 +109,7 @@ export default class Home extends React.Component {
 
 const styles = StyleSheet.create({
   home: {
-    width: width,    
+    width: width,
   },
   search: {
     height: 48,
