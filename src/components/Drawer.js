@@ -1,13 +1,21 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Block, Text, theme } from "galio-framework";
 
 import Icon from './Icon';
 import materialTheme from '../constants/Theme';
 
+// Token from Okta
+
+
 const notificationLabels = ['Test'];
 
 class DrawerItem extends React.Component {
+
+  logout = async () => {
+    await console.log("THIS IS TESTTTTTTTTTTTTTTTTTTTT");
+  }
+  
   renderIcon = () => {
     const { title, focused } = this.props;
 
@@ -20,7 +28,7 @@ class DrawerItem extends React.Component {
             family="GalioExtra"
             color={focused ? 'white' : materialTheme.COLORS.MUTED} />
         );
-      case 'Expenses' || 'Reports':
+      case 'Expenses':
         return (
           <Icon
             size={16}
@@ -28,14 +36,14 @@ class DrawerItem extends React.Component {
             family="Galio"
             color={focused ? 'white' : materialTheme.COLORS.MUTED} />
         );
-      // case 'Reports':
-      //   return (
-      //     <Icon
-      //       size={16}
-      //       name="list-bullet"
-      //       family="GalioExtra"
-      //       color={focused ? 'white' : materialTheme.COLORS.MUTED} />
-      //   );
+      case 'Reports':
+        return (
+          <Icon
+            size={16}
+            name="list-bullet"
+            family="Galio"
+            color={focused ? 'white' : materialTheme.COLORS.MUTED} />
+        );
       case 'Trip':
         return (
           <Icon
@@ -48,17 +56,20 @@ class DrawerItem extends React.Component {
         return (
           <Icon
             size={16}
-            name="flower-06"
+            name="settings-gear-65"
             family="Galio"
             color={focused ? 'white' : materialTheme.COLORS.MUTED} />
         );
       case 'Sign Out':
         return (
-          <Icon
-            size={16}
-            name="log-out"
-            family="Galio"
-            color={focused ? 'white' : materialTheme.COLORS.MUTED} />
+          <TouchableOpacity onPress={async () => {this.logout()}}>  
+            <Icon
+              size={16}
+              name="log-out"
+              family="Galio"
+              color={focused ? 'white' : materialTheme.COLORS.MUTED} 
+            />
+          </TouchableOpacity>
         );
       default:
         return null;
@@ -90,7 +101,7 @@ class DrawerItem extends React.Component {
         <Block row center flex={0.9}>
           <Text size={18} color={focused ? 'white' : proScreen ? materialTheme.COLORS.MUTED : 'black'}>
             {title}
-          </Text>
+          </Text>  
           {this.renderLabel()}
         </Block>
       </Block>

@@ -106,14 +106,14 @@ class Header extends React.Component {
       <Block row style={styles.tabs}>
         <Button shadowless style={[styles.tab, styles.divider]} onPress={() => navigation.navigate('Pro')}>
           <Block row middle>
-            <Icon name="grid-square" family="Galio" style={{ paddingRight: 8 }} />
-            <Text size={16} style={styles.tabTitle}>{tabTitleLeft || 'Refresh'}</Text>
+            <Icon name="copy-2" family="Galio" style={{ paddingRight: 8 }} />
+            <Text size={16} style={styles.tabTitle}>{tabTitleLeft || 'Create Expenses'}</Text>
           </Block>
         </Button>
         <Button shadowless style={styles.tab} onPress={() => navigation.navigate('Pro')}>
           <Block row middle>
             <Icon size={16} name="camera-18" family="GalioExtra" style={{ paddingRight: 8 }} />
-            <Text size={16} style={styles.tabTitle}>{tabTitleRight || 'Upload Picture'}</Text>
+            <Text size={16} style={styles.tabTitle}>{tabTitleRight || 'Scan Receipt'}</Text>
           </Block>
         </Button>
       </Block>
@@ -136,7 +136,7 @@ class Header extends React.Component {
   render() {
     const { back, title, white, transparent, navigation } = this.props;
     const { routeName } = navigation.state;
-    const noShadow = ["Profile"].includes(routeName);
+    const noShadow = ["Ex"].includes(routeName);
     const headerStyles = [
       !noShadow ? styles.shadow : null,
       transparent ? { backgroundColor: 'rgba(0,0,0,0)' } : null,

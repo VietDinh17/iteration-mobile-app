@@ -13,6 +13,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@okta/okta-react-native": "^0.1.2",
     "aws-amplify": "^1.1.26",
     "aws-amplify-react-native": "^2.1.10",
     "expo": "^32.0.0",
@@ -21,7 +22,9 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-elements": "^1.1.0",
     "react-native-modal-dropdown": "^0.6.2",
-    "react-navigation": "^2.18.2"
+    "react-navigation": "^2.18.2",
+    "react-redux": "^7.0.3",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",

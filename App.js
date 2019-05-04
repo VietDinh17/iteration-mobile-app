@@ -11,6 +11,12 @@ import Amplify from '@aws-amplify/core'
 import config from './src/constants/aws-exports'
 Amplify.configure(config)
 
+// Redux
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './src/redux/reducers'
+const store = createStore(reducer);
+
 // cache app images
 const assetImages = [
   Images.Pro,
@@ -51,7 +57,9 @@ export default class App extends React.Component {
         <GalioProvider theme={materialTheme}>
           <Block flex>
             {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-            <Screens />
+            <Provider store={store}>
+              <Screens />
+            </Provider>
           </Block>
         </GalioProvider>
       );

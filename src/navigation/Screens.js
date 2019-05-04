@@ -4,7 +4,7 @@ import { createSwitchNavigator, createStackNavigator, createDrawerNavigator } fr
 
 import { Block, Text, theme } from "galio-framework";
 
-import Expenses from '../screens/Expenses';
+import ExpensesScreen from '../screens/Expenses';
 import HomeScreen from '../screens/Home';
 import SigninScreen from '../screens/Signin';
 import SignupScreen from '../screens/Signup';
@@ -93,6 +93,60 @@ const AuthenticationStack = createStackNavigator({
   transitionConfig,
 })
 
+const ExpensesStack = createStackNavigator({
+  Expenses: {
+    screen: ExpensesScreen,
+    navigationOptions: ({navigation}) => ({
+      header: <Header tabs title="Expenses" navigation={navigation} />,
+    })
+  }}, 
+  {
+    cardStyle: { backgroundColor: '#EEEEEE', },
+    transitionConfig,
+  }
+)
+
+const ReportsStack = createStackNavigator({
+  Reports: {
+    screen: ReportsScreen,
+    navigationOptions: ({navigation}) => ({
+      header: <Header tabs title="Reports" navigation={navigation} />,
+    })
+  }}, 
+  {
+    cardStyle: { backgroundColor: '#EEEEEE', },
+    transitionConfig,
+  }
+)
+
+
+const TripStack = createStackNavigator({
+  Trip: {
+    screen: TripScreen,
+    navigationOptions: ({navigation}) => ({
+      header: <Header tabs title="Trip" navigation={navigation} />,
+    })
+  }}, 
+  {
+    cardStyle: { backgroundColor: '#EEEEEE', },
+    transitionConfig,
+  }
+)
+
+const SettingsStack = createStackNavigator({
+  Settings: {
+    screen: SettingsScreen,
+    navigationOptions: ({navigation}) => ({
+      header: <Header back title="Settings" navigation={navigation} />,
+    })
+  }}, 
+  {
+    cardStyle: { backgroundColor: '#EEEEEE', },
+    transitionConfig,
+  }
+)
+
+
 const HomeStack = createStackNavigator({
   Home: {
     screen: HomeScreen,
@@ -100,17 +154,17 @@ const HomeStack = createStackNavigator({
       header: <Header tabs title="Home" navigation={navigation} />,
     })
   },
-  Settings: {
-    screen: SettingsScreen,
-    navigationOptions: ({navigation}) => ({
-      header: <Header back title="Settings" navigation={navigation} />,
-    })
-  },
-  // Components: {
-  //   screen: ComponentsScreen,
+  // Settings: {
+  //   screen: SettingsScreen,
   //   navigationOptions: ({navigation}) => ({
-  //     header: <Header title="Components" navigation={navigation} />,
+  //     header: <Header back title="Settings" navigation={navigation} />,
   //   })
+  // },
+  // Expenses: {
+  //   screen: ExpensesStack,
+  //   // navigationOptions: ({navigation}) => ({
+  //   //   header: <Header tabs title="Expenses" navigation={navigation} />,
+  //   // })
   // },
   // Profile: {
   //   screen: ProfileScreen,
@@ -129,12 +183,12 @@ const HomeStack = createStackNavigator({
 
 const AppStack = createDrawerNavigator(
   {
-    Authentication: {
-      screen: AuthenticationStack,
-      navigationOptions: {
-        drawerLabel: () => {},
-      },
-    },
+    // Authentication: {
+    //   screen: AuthenticationStack,
+    //   navigationOptions: {
+    //     drawerLabel: () => {},
+    //   },
+    // },
     Dashboard: {
       screen: HomeStack,
       navigationOptions: (navOpt) => ({
@@ -144,15 +198,15 @@ const AppStack = createDrawerNavigator(
       }),
     },
     Expenses: {
-      screen: HomeScreen,
-      navigationOptions: (navOpt) => ({
+      screen: ExpensesStack,
+      navigationOptions: (navOp) => ({
         drawerLabel: ({focused}) => (
           <Drawer focused={focused} screen="Expenses" title="Expenses" />
         ),
       }),
     },
     Reports: {
-      screen: ReportsScreen,
+      screen: ReportsStack,
       navigationOptions: (navOpt) => ({
         drawerLabel: ({focused}) => (
           <Drawer focused={focused} screen="Reports" title="Reports" />
@@ -160,7 +214,7 @@ const AppStack = createDrawerNavigator(
       }),
     },
     Trip: {
-      screen: TripScreen,
+      screen: TripStack,
       navigationOptions: (navOpt) => ({
         drawerLabel: ({focused}) => (
           <Drawer focused={focused} screen="Trip" title="Trip" />
@@ -168,7 +222,7 @@ const AppStack = createDrawerNavigator(
       }),
     },
     Settings: {
-      screen: SettingsScreen,
+      screen: SettingsStack,
       navigationOptions: (navOpt) => ({
         drawerLabel: ({focused}) => (
           <Drawer focused={focused} screen="Settings" title="Settings" />
