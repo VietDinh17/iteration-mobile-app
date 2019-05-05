@@ -78,7 +78,7 @@ export default class Settings extends React.Component {
             </Block>
           }
         />
-        <Block style={styles.title}>
+        {/* <Block style={styles.title}>
           <Text bold center size={theme.SIZES.BASE} style={{ paddingBottom: 5 }}>
           Payment Settings
           </Text>
@@ -90,7 +90,7 @@ export default class Settings extends React.Component {
           data={payment}
           keyExtractor={(item, index) => item.id}
           renderItem={this.renderItem}
-        />
+        /> */}
         <Block style={styles.title}>
           <Text bold center size={theme.SIZES.BASE} style={{ paddingBottom: 5 }}>
           Privacy Settings

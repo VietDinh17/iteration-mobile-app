@@ -9,27 +9,53 @@ import materialTheme from '../constants/Theme';
 const { height, width } = Dimensions.get('window');
 const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
 
-const ChatButton = ({isWhite, style, navigation}) => (
-  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
-    <Icon
-      family="GalioExtra"
-      size={16}
-      name="chat-33"
-      color={theme.COLORS[isWhite ? 'WHITE' : 'ICON']}
-    />
-    <Block middle style={styles.notify} />
-  </TouchableOpacity>
-);
+// const ChatButton = ({isWhite, style, navigation}) => (
+//   <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
+//     <Icon
+//       family="GalioExtra"
+//       size={16}
+//       name="chat-33"
+//       color={theme.COLORS[isWhite ? 'WHITE' : 'ICON']}
+//     />
+//     <Block middle style={styles.notify} />
+//   </TouchableOpacity>
+// );
 
 const BasketButton = ({isWhite, style, navigation}) => (
   <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
     <Icon
-      family="GalioExtra"
+      family="FontAwesome"
       size={16}
-      name="basket-simple"
+      name="refresh"
       color={theme.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
-    <Block middle style={styles.notify} />
+    <Block middle/>
+  </TouchableOpacity>
+);
+
+const SaveButton = ({isWhite, style, navigation}) => (
+  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('BlackHole')}>
+    {/* <Icon
+      family="FontAwesome"
+      size={16}
+      name="refresh"
+      color={theme.COLORS[isWhite ? 'WHITE' : 'ICON']}
+    /> */}
+    <Text size={16} bold={true}>Save</Text>
+    <Block middle/>
+  </TouchableOpacity>
+);
+
+const PlusButton = ({isWhite, style, navigation}) => (
+  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('NewReport')}>
+    <Icon
+      family="FontAwesome"
+      size={20}
+      name="plus"
+      color={theme.COLORS[isWhite ? 'WHITE' : 'ICON']}
+    />
+    {/* <Text size={16} bold={true}>Save</Text> */}
+    <Block middle/>
   </TouchableOpacity>
 );
 
@@ -57,28 +83,27 @@ class Header extends React.Component {
     switch (routeName) {
       case 'Home':
         return ([
-          <ChatButton key='chat-home' navigation={navigation} isWhite={white} />,
+          // <ChatButton key='chat-home' navigation={navigation} isWhite={white} />,
           <BasketButton key='basket-home' navigation={navigation} isWhite={white} />
         ]);
       case 'Expenses':
         return ([
-          <ChatButton key='chat-categories' navigation={navigation} />,
+          // <ChatButton key='chat-categories' navigation={navigation} />,
           <BasketButton key='basket-categories' navigation={navigation} />
         ]);
       case 'Reports':
         return ([
-          <ChatButton key='chat-categories' navigation={navigation} isWhite={white} />,
-          <BasketButton key='basket-categories' navigation={navigation} isWhite={white} />
+          // <ChatButton key='chat-categories' navigation={navigation} isWhite={white} />,
+          <PlusButton key='basket-categories' navigation={navigation} isWhite={white} />
         ]);
-      case 'Trips':
+      case 'Trip':
         return ([
-          <ChatButton key='chat-deals' navigation={navigation} isWhite={white} />,
+          // <ChatButton key='chat-deals' navigation={navigation} isWhite={white} />,
           <BasketButton key='basket-deals' navigation={navigation} isWhite={white} />
         ]);
-      case 'Settings':
+      case 'NewExpense':
         return ([
-          <ChatButton key='chat-search' navigation={navigation} isWhite={white} />,
-          <BasketButton key='basket-search' navigation={navigation} isWhite={white} />
+          <SaveButton key='save' navigation={navigation} isWhite={white} />
         ]);
       default:
         break;
@@ -104,15 +129,15 @@ class Header extends React.Component {
 
     return (
       <Block row style={styles.tabs}>
-        <Button shadowless style={[styles.tab, styles.divider]} onPress={() => navigation.navigate('Pro')}>
+        <Button shadowless style={[styles.tab, styles.divider]} onPress={() => navigation.navigate('NewExpense')}>
           <Block row middle>
-            <Icon name="copy-2" family="Galio" style={{ paddingRight: 8 }} />
+            <Icon size={25} name="plus" family="FontAwesome" style={{ paddingRight: 8 }} />
             <Text size={16} style={styles.tabTitle}>{tabTitleLeft || 'Create Expenses'}</Text>
           </Block>
         </Button>
         <Button shadowless style={styles.tab} onPress={() => navigation.navigate('Pro')}>
           <Block row middle>
-            <Icon size={16} name="camera-18" family="GalioExtra" style={{ paddingRight: 8 }} />
+            <Icon size={25} name="camera" family="FontAwesome" style={{ paddingRight: 8 }} />
             <Text size={16} style={styles.tabTitle}>{tabTitleRight || 'Scan Receipt'}</Text>
           </Block>
         </Button>
@@ -149,8 +174,8 @@ class Header extends React.Component {
           title={title}
           style={styles.navbar}
           transparent={transparent}
-          // right={this.renderRight()}
-          right={null}
+          right={this.renderRight()}
+          // right={null}
           rightStyle={{ alignItems: 'center' }}
           leftStyle={{ paddingVertical: 12, flex: 0.3 }}
           leftIconColor={white ? theme.COLORS.WHITE : theme.COLORS.ICON}
@@ -231,5 +256,8 @@ const styles = StyleSheet.create({
   tabTitle: {
     lineHeight: 19,
     fontWeight: '300'
+  },
+  saveButton: {
+    fontWeight: '300',
   },
 })

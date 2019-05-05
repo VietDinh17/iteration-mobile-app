@@ -1,9 +1,11 @@
 import React from 'react';
 import { Easing, Animated, Platform } from 'react-native';
 import { createSwitchNavigator, createStackNavigator, createDrawerNavigator } from 'react-navigation';
-
 import { Block, Text, theme } from "galio-framework";
 
+import Menu from './Menu';
+
+// Screens 
 import ExpensesScreen from '../screens/Expenses';
 import HomeScreen from '../screens/Home';
 import SigninScreen from '../screens/Signin';
@@ -11,10 +13,15 @@ import SignupScreen from '../screens/Signup';
 import TripScreen from '../screens/Trip';
 import SettingsScreen from '../screens/Settings';
 import ReportsScreen from '../screens/Reports';
-import Menu from './Menu';
+import NewExpenseScreen from '../screens/NewExpense';
+import NewReportScreen from '../screens/NewReport';
+
+
+// Components 
 import Header from '../components/Header';
 import { Drawer } from '../components/';
 
+// Transitions when switch between screens
 const transitionConfig = (transitionProps, prevTransitionProps) => ({
   transitionSpec: {
     duration: 400,
@@ -50,30 +57,6 @@ const transitionConfig = (transitionProps, prevTransitionProps) => ({
   }
 })
 
-// const ProfileStack = createStackNavigator({
-//   Profile: {
-//     screen: ProfileScreen,
-//     navigationOptions: ({ navigation }) => ({
-//       header: <Header white transparent title="Profile" navigation={navigation} />,
-//       headerTransparent: true,
-//     })
-//   },
-// }, {
-//   cardStyle: { backgroundColor: '#EEEEEE', },
-//   transitionConfig,
-// })
-
-// const ComponentsStack = createStackNavigator({
-//   Components: {
-//     screen: ComponentsScreen,
-//     navigationOptions: ({ navigation }) => ({
-//       header: <Header back title="Components" navigation={navigation} />,
-//     })
-//   },
-// }, {
-//   cardStyle: { backgroundColor: '#EEEEEE', },
-//   transitionConfig,
-// })
 
 const AuthenticationStack = createStackNavigator({
   Signin: {
@@ -99,7 +82,20 @@ const ExpensesStack = createStackNavigator({
     navigationOptions: ({navigation}) => ({
       header: <Header tabs title="Expenses" navigation={navigation} />,
     })
-  }}, 
+  },
+  NewExpense: {
+    screen: NewExpenseScreen,
+    navigationOptions: ({navigation}) => ({
+      header: <Header back title="New Expense" navigation={navigation} />,
+    })
+  },
+  Settings: {
+    screen: SettingsScreen,
+    navigationOptions: ({navigation}) => ({
+      header: <Header back title="Settings" navigation={navigation} />,
+    })
+  }
+  }, 
   {
     cardStyle: { backgroundColor: '#EEEEEE', },
     transitionConfig,
@@ -110,9 +106,22 @@ const ReportsStack = createStackNavigator({
   Reports: {
     screen: ReportsScreen,
     navigationOptions: ({navigation}) => ({
-      header: <Header tabs title="Reports" navigation={navigation} />,
+      header: <Header title="Reports" navigation={navigation} />,
     })
-  }}, 
+  },
+  NewReport: {
+    screen: NewReportScreen,
+    navigationOptions: ({navigation}) => ({
+      header: <Header back title="New Report" navigation={navigation} />,
+    })
+  },
+  Settings: {
+    screen: SettingsScreen,
+    navigationOptions: ({navigation}) => ({
+      header: <Header back title="Settings" navigation={navigation} />,
+    })
+  }
+  }, 
   {
     cardStyle: { backgroundColor: '#EEEEEE', },
     transitionConfig,
@@ -124,9 +133,16 @@ const TripStack = createStackNavigator({
   Trip: {
     screen: TripScreen,
     navigationOptions: ({navigation}) => ({
-      header: <Header tabs title="Trip" navigation={navigation} />,
+      header: <Header title="Trip" navigation={navigation} />,
     })
-  }}, 
+  },
+  Settings: {
+    screen: SettingsScreen,
+    navigationOptions: ({navigation}) => ({
+      header: <Header back title="Settings" navigation={navigation} />,
+    })
+  }
+  },
   {
     cardStyle: { backgroundColor: '#EEEEEE', },
     transitionConfig,
@@ -139,7 +155,7 @@ const SettingsStack = createStackNavigator({
     navigationOptions: ({navigation}) => ({
       header: <Header back title="Settings" navigation={navigation} />,
     })
-  }}, 
+  }},
   {
     cardStyle: { backgroundColor: '#EEEEEE', },
     transitionConfig,
@@ -154,12 +170,18 @@ const HomeStack = createStackNavigator({
       header: <Header tabs title="Home" navigation={navigation} />,
     })
   },
-  // Settings: {
-  //   screen: SettingsScreen,
-  //   navigationOptions: ({navigation}) => ({
-  //     header: <Header back title="Settings" navigation={navigation} />,
-  //   })
-  // },
+  NewExpense: {
+    screen: NewExpenseScreen,
+    navigationOptions: ({navigation}) => ({
+      header: <Header back title="New Expense" navigation={navigation} />,
+    })
+  },
+  Settings: {
+    screen: SettingsScreen,
+    navigationOptions: ({navigation}) => ({
+      header: <Header back title="Settings" navigation={navigation} />,
+    })
+  }
   // Expenses: {
   //   screen: ExpensesStack,
   //   // navigationOptions: ({navigation}) => ({
