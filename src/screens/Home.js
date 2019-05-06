@@ -54,7 +54,7 @@ export default class Home extends React.Component {
         <Button shadowless style={[styles.tab, styles.divider]} onPress={() => navigation.navigate('Pro')}>
           <Block row middle>
             <Icon name="grid-square" family="Galio" style={{ paddingRight: 8 }} />
-            <Text size={16} style={styles.tabTitle}>Refresh fdsfd</Text>
+            <Text size={16} style={styles.tabTitle}>Refresh</Text>
           </Block>
         </Button>
         <Button shadowless style={styles.tab} onPress={() => navigation.navigate('Pro')}>
@@ -101,7 +101,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <Block flex center style={styles.home}>
-        {this.renderProducts()}
+        {/* {this.renderProducts()} */}
       </Block>
     );
   }

@@ -15,6 +15,8 @@ import SettingsScreen from '../screens/Settings';
 import ReportsScreen from '../screens/Reports';
 import NewExpenseScreen from '../screens/NewExpense';
 import NewReportScreen from '../screens/NewReport';
+import CameraScreen from '../screens/Camera';
+
 
 
 // Components 
@@ -87,6 +89,12 @@ const ExpensesStack = createStackNavigator({
     screen: NewExpenseScreen,
     navigationOptions: ({navigation}) => ({
       header: <Header back title="New Expense" navigation={navigation} />,
+    })
+  },
+  Camera: {
+    screen: CameraScreen,
+    navigationOptions: ({navigation}) => ({
+      headerTransparent: true,
     })
   },
   Settings: {
@@ -174,6 +182,12 @@ const HomeStack = createStackNavigator({
     screen: NewExpenseScreen,
     navigationOptions: ({navigation}) => ({
       header: <Header back title="New Expense" navigation={navigation} />,
+    })
+  },
+  Camera: {
+    screen: CameraScreen,
+    navigationOptions: ({navigation}) => ({
+      headerTransparent: true,
     })
   },
   Settings: {

@@ -135,7 +135,7 @@ class Header extends React.Component {
             <Text size={16} style={styles.tabTitle}>{tabTitleLeft || 'Create Expenses'}</Text>
           </Block>
         </Button>
-        <Button shadowless style={styles.tab} onPress={() => navigation.navigate('Pro')}>
+        <Button shadowless style={styles.tab} onPress={() => navigation.navigate('Camera')}>
           <Block row middle>
             <Icon size={25} name="camera" family="FontAwesome" style={{ paddingRight: 8 }} />
             <Text size={16} style={styles.tabTitle}>{tabTitleRight || 'Scan Receipt'}</Text>
@@ -161,7 +161,7 @@ class Header extends React.Component {
   render() {
     const { back, title, white, transparent, navigation } = this.props;
     const { routeName } = navigation.state;
-    const noShadow = ["Ex"].includes(routeName);
+    const noShadow = ["Reports", "Trip", "Settings"].includes(routeName);
     const headerStyles = [
       !noShadow ? styles.shadow : null,
       transparent ? { backgroundColor: 'rgba(0,0,0,0)' } : null,

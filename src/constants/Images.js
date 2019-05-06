@@ -5,6 +5,7 @@ const Products = {
 };
 
 const Profile = 'https://images.unsplash.com/photo-1512529920731-e8abaea917a5?fit=crop&w=840&q=80';
+const DefaultProfile = 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png';
 const Avatar = 'https://images.unsplash.com/photo-1518725522904-4b3939358342?fit=crop&w=210&q=80';
 
 const Viewed = [
@@ -20,6 +21,7 @@ export default {
   Onboarding,
   Pro,
   Products,
+  DefaultProfile,
   Profile,
   Viewed,
   Avatar,
